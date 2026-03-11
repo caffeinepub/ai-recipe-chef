@@ -1,0 +1,158 @@
+@font-face {
+  font-family: "Fraunces";
+  src: url("/assets/fonts/Fraunces.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "General Sans";
+  src: url("/assets/fonts/GeneralSans.woff2") format("woff2");
+  font-weight: 200 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Warm parchment light theme */
+    --background: 0.97 0.015 75;
+    --foreground: 0.18 0.025 35;
+
+    --card: 0.99 0.008 70;
+    --card-foreground: 0.18 0.025 35;
+
+    --popover: 0.99 0.008 70;
+    --popover-foreground: 0.18 0.025 35;
+
+    /* Terracotta primary */
+    --primary: 0.52 0.17 33;
+    --primary-foreground: 0.98 0.005 70;
+
+    /* Warm sand secondary */
+    --secondary: 0.92 0.025 70;
+    --secondary-foreground: 0.25 0.03 35;
+
+    --muted: 0.93 0.018 70;
+    --muted-foreground: 0.52 0.04 45;
+
+    /* Saffron accent */
+    --accent: 0.78 0.14 65;
+    --accent-foreground: 0.18 0.025 35;
+
+    --destructive: 0.55 0.2 25;
+    --destructive-foreground: 0.98 0.005 70;
+
+    --border: 0.88 0.03 60;
+    --input: 0.88 0.03 60;
+    --ring: 0.52 0.17 33;
+
+    --radius: 0.75rem;
+
+    --chart-1: 0.52 0.17 33;
+    --chart-2: 0.78 0.14 65;
+    --chart-3: 0.62 0.12 155;
+    --chart-4: 0.68 0.1 240;
+    --chart-5: 0.72 0.15 300;
+
+    --sidebar: 0.96 0.018 72;
+    --sidebar-foreground: 0.18 0.025 35;
+    --sidebar-primary: 0.52 0.17 33;
+    --sidebar-primary-foreground: 0.98 0.005 70;
+    --sidebar-accent: 0.92 0.025 70;
+    --sidebar-accent-foreground: 0.25 0.03 35;
+    --sidebar-border: 0.88 0.03 60;
+    --sidebar-ring: 0.52 0.17 33;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: "General Sans", sans-serif;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: "Fraunces", serif;
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: "Fraunces", serif;
+  }
+
+  .font-body {
+    font-family: "General Sans", sans-serif;
+  }
+
+  .hero-bg {
+    background-image: url("/assets/generated/recipe-hero-bg.dim_1400x600.jpg");
+    background-size: cover;
+    background-position: center;
+  }
+
+  .grain-overlay {
+    position: relative;
+  }
+
+  .grain-overlay::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
+    pointer-events: none;
+    border-radius: inherit;
+  }
+
+  .recipe-prose h1 {
+    @apply text-2xl font-display font-bold mb-3 text-foreground;
+  }
+  .recipe-prose h2 {
+    @apply text-xl font-display font-semibold mt-5 mb-2 text-foreground;
+  }
+  .recipe-prose h3 {
+    @apply text-lg font-display font-semibold mt-4 mb-2 text-foreground;
+  }
+  .recipe-prose p {
+    @apply mb-3 leading-relaxed text-foreground/85;
+  }
+  .recipe-prose ul {
+    @apply list-none space-y-1 mb-4 pl-0;
+  }
+  .recipe-prose ul li {
+    @apply pl-5 relative text-foreground/85;
+  }
+  .recipe-prose ul li::before {
+    content: "→";
+    @apply absolute left-0 text-primary font-bold;
+  }
+  .recipe-prose ol {
+    @apply list-none space-y-2 mb-4 pl-0 counter-reset-steps;
+    counter-reset: steps;
+  }
+  .recipe-prose ol li {
+    @apply pl-8 relative text-foreground/85;
+    counter-increment: steps;
+  }
+  .recipe-prose ol li::before {
+    content: counter(steps);
+    @apply absolute left-0 w-6 h-6 bg-primary text-primary-foreground rounded-full flex items-center justify-center text-xs font-bold;
+  }
+  .recipe-prose strong {
+    @apply font-semibold text-foreground;
+  }
+  .recipe-prose hr {
+    @apply border-border my-4;
+  }
+}
