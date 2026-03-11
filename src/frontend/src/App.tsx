@@ -82,7 +82,8 @@ function AppContent() {
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === "Enter" && (e.metaKey || e.ctrlKey)) {
+    if (e.key === "#") {
+      e.preventDefault();
       handleGenerate();
     }
   };
@@ -178,11 +179,7 @@ function AppContent() {
                     <p className="text-xs text-muted-foreground font-body">
                       Press{" "}
                       <kbd className="px-1.5 py-0.5 bg-secondary rounded text-[10px] font-mono border border-border">
-                        ⌘
-                      </kbd>{" "}
-                      +{" "}
-                      <kbd className="px-1.5 py-0.5 bg-secondary rounded text-[10px] font-mono border border-border">
-                        Enter
+                        #
                       </kbd>{" "}
                       to generate
                     </p>
